@@ -1,3 +1,11 @@
+const COLORS = ["#E8C73C", "#F49749", "#DD517A", "#9D66F6", "#58ADEA"];
+
+
+window.onload = async () => {
+  generateText();
+  bindButton();
+};
+
 async function getEffects() {
   const URL = "http://strainapi.evanbusse.com/DHsuTyH/searchdata/effects";
   const response = await fetch(URL);
@@ -19,11 +27,6 @@ async function getRandomGenre() {
   return genre;
 }
 
-window.onload = async () => {
-  generateText();
-  bindButton();
-};
-
 function bindButton() {
   const button = document.getElementById("new-genre");
   button.onclick = generateText;
@@ -40,6 +43,8 @@ async function generateText() {
   } else {
     sentence = `When I listen to ${genre}, it makes me feel ${feeling}.`;
   }
-  const paragraph = document.getElementById("genre-container");
+  const paragraph = document.getElementById("genre-container__sentence");
   paragraph.innerText = sentence;
+
+  document.body.style.backgroundColor = COLORS[Math.floor(Math.random()*COLORS.length)];
 }
